@@ -7,6 +7,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.client.result.DeleteResult;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
         //Conexion a la nube
@@ -17,5 +19,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Error al conectar a MongoDB Atlas: " + e.getMessage());
             }
+
     }
+
 }
