@@ -16,10 +16,9 @@ public class Main {
             MongoDatabase database = mongoClient.getDatabase("MinimarketPro");
             MongoCollection<Document> collection = database.getCollection("Usuarios");
             System.out.println("Conexión a MongoDB Atlas exitosa.");
-            } catch (Exception e) {
-                System.out.println("Error al conectar a MongoDB Atlas: " + e.getMessage());
-            }
+        } catch (Exception e) {
+            System.out.println("Error al conectar a MongoDB Atlas: " + e.getMessage());
+        }
 
     }
-
-}//
+}
