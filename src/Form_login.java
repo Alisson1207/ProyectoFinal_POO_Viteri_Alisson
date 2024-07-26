@@ -131,7 +131,4 @@ public class Form_login extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Form_login());
-    }
 }
