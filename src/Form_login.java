@@ -40,7 +40,7 @@ public class Form_login extends JFrame {
 
         // Panel de login
         panel_login = new JPanel();
-        panel_login.setBounds(100, 50, 400, 300); // Ajustar el valor y para mover hacia arriba
+        panel_login.setBounds(100, 50, 400, 300); 
         panel_login.setOpaque(true); // Fondo opaco
         panel_login.setBackground(new Color(0, 0, 0, 130));
         panel_login.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Borde
@@ -64,14 +64,14 @@ public class Form_login extends JFrame {
         lb_usuario.setFont(labelFont);
         lb_usuario.setForeground(Color.WHITE);
 
-        tf_usuario = new JTextField(15); // Aumentar el tamaño del campo de texto
+        tf_usuario = new JTextField(15); //tamaño del campo de texto
         tf_usuario.setFont(fieldFont);
 
         lb_contrasena = new JLabel("Contraseña:");
         lb_contrasena.setFont(labelFont);
         lb_contrasena.setForeground(Color.WHITE);
 
-        pf_contrasena = new JPasswordField(15); // Aumentar el tamaño del campo de texto
+        pf_contrasena = new JPasswordField(15); 
         pf_contrasena.setFont(fieldFont);
 
         bt_ingresar = new JButton("Ingresar");
