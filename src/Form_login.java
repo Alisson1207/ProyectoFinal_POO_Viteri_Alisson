@@ -99,12 +99,12 @@ public class Form_login extends JFrame {
         gbc.gridx = 0; // Ubicación en la cuadrícula del grid (columna 1)
         gbc.gridy = 1; // Ubicación en la cuadrícula del grid (fila 2)
         gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.LINE_END; // Alinea el label al final del eje x
+        gbc.anchor = GridBagConstraints.LINE_END; //Alinea el tf
         panel_login.add(lb_usuario, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.LINE_START; // Alinea el campo de texto al principio del eje x
+        gbc.anchor = GridBagConstraints.LINE_START; 
         panel_login.add(tf_usuario, gbc);
 
         gbc.gridx = 0;
@@ -122,7 +122,7 @@ public class Form_login extends JFrame {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        // Crear panel de botones para alinearlos correctamente
+        //Panel botones
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.setLayout(new GridLayout(1, 2, 10, 0));
