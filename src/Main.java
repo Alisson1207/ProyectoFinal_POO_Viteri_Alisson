@@ -11,14 +11,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        //Conexion a la nube
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://alissonviteri01:123456poo24a@cluster0.f0q39vt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")) {
-            MongoDatabase database = mongoClient.getDatabase("MinimarketPro");
-            MongoCollection<Document> collection = database.getCollection("Usuarios");
-            System.out.println("Conexión a MongoDB Atlas exitosa.");
-        } catch (Exception e) {
-            System.out.println("Error al conectar a MongoDB Atlas: " + e.getMessage());
-        }
-
+        Form_login formLogin = new Form_login();
+        formLogin.setVisible(true);
     }
 }
