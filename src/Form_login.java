@@ -159,7 +159,7 @@ public class Form_login extends JFrame {
                         if ("administrador".equals(rol)) {
                             JFrame frame = new JFrame("Administrador");
                             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            frame.setContentPane(new Form_administrador().panel);
+                            frame.setContentPane(new Form_administrador().panel_principal);
                             frame.pack();
                             frame.setSize(900, 600);
                             frame.setLocationRelativeTo(null);
