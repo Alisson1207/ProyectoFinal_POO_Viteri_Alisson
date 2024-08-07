@@ -22,7 +22,7 @@ import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 
 /**
- * Form_administrador representa un formulario para la gestión de administradores.
+ * Form_administrador formulario para la gestión de administradores.
  * Permite registrar nuevos usuarios en la base de datos y mostrar una lista de administradores y cajeros.
  * Permite ver el inventario de los productos y su stock.
  * Revisar las ventas de cada uno de los empleados y en general.
@@ -256,7 +256,7 @@ public class Form_administrador extends Frame {
 
         bt_registrar.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de registro.
+             * Evento de clic en el botón de registro.
              * Valida los campos del formulario y registra un nuevo usuario en la base de datos.
              *
              * @param e El evento de acción que se produjo.
@@ -338,7 +338,7 @@ public class Form_administrador extends Frame {
 
         bt_editar.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de editar.
+             * Evento de clic en el botón de editar.
              * Carga los datos del registro seleccionado en los campos de texto para que puedan ser modificados.
              *
              * @param e El evento de acción que se produjo.
@@ -366,7 +366,7 @@ public class Form_administrador extends Frame {
 
         bt_guardar.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de guardar cambios.
+             * Evento de clic en el botón de guardar cambios.
              * Actualiza el registro seleccionado en la base de datos con los nuevos datos ingresados en los campos de texto.
              *
              * @param e El evento de acción que se produjo.
@@ -438,7 +438,7 @@ public class Form_administrador extends Frame {
 
         bt_eliminar.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de eliminar.
+             * Evento de clic en el botón de eliminar.
              * Elimina el registro seleccionado de la base de datos y actualiza la tabla.
              *
              * @param e El evento de acción que se produjo.
@@ -474,7 +474,7 @@ public class Form_administrador extends Frame {
 
         bt_buscar.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de búsqueda.
+             * Evento de clic en el botón de búsqueda.
              * Busca un documento en la base de datos por la cédula proporcionada y muestra el resultado en la tabla.
              *
              * @param e El evento de acción que se produjo.
@@ -584,9 +584,9 @@ public class Form_administrador extends Frame {
         });
 
 
-    /**
-     * Configura el botón para registrar un producto.
-     */
+        /**
+         * Configura el botón para registrar un producto.
+         */
         bt_registrar_producto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -655,8 +655,8 @@ public class Form_administrador extends Frame {
         });
 
 
-    // Configuración del renderizador de imágenes para la columna de la tabla
-    table_productos.setDefaultRenderer(ImageIcon.class, new DefaultTableCellRenderer() {
+        // Configuración del renderizador de imágenes para la columna de la tabla
+        table_productos.setDefaultRenderer(ImageIcon.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 if (value instanceof ImageIcon) {
@@ -669,7 +669,7 @@ public class Form_administrador extends Frame {
 // Acción del botón editar producto
         bt_editar_producto.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de editar producto.
+             * Evento de clic en el botón de editar producto.
              * Carga los datos del producto seleccionado en los campos de texto para su edición.
              *
              * @param e El evento de acción que se produjo.
@@ -699,7 +699,7 @@ public class Form_administrador extends Frame {
 // Acción del botón guardar producto
         bt_guardar_producto.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de guardar cambios.
+             * Evento de clic en el botón de guardar cambios.
              * Actualiza el registro seleccionado en la base de datos con los nuevos datos ingresados en los campos de texto.
              *
              * @param e El evento de acción que se produjo.
@@ -732,7 +732,7 @@ public class Form_administrador extends Frame {
                     collection.updateOne(filtro, actualizacion);
                     lb_mensaje_productos.setText("Registro actualizado correctamente");
 
-                    // Limpiar campos de texto
+
                     tf_codigo_registro.setText("");
                     tf_nombre_registro.setText("");
                     tf_categoria.setText("");
@@ -740,7 +740,6 @@ public class Form_administrador extends Frame {
                     tf_precio_producto.setText("");
                     imagenSeleccionada = null;
 
-                    // Actualizar la tabla
                     DefaultTableModel model1 = (DefaultTableModel) table_productos.getModel();
                     model1.setRowCount(0); // Limpiar la tabla antes de llenarla
 
@@ -788,7 +787,7 @@ public class Form_administrador extends Frame {
 
         bt_eliminar_producto.addActionListener(new ActionListener() {
             /**
-             * Maneja el evento de clic en el botón de eliminar producto.
+             * Evento de clic en el botón de eliminar producto.
              * Elimina el producto seleccionado de la base de datos y actualiza la tabla.
              *
              * @param e El evento de acción que se produjo.
@@ -801,7 +800,6 @@ public class Form_administrador extends Frame {
                     return;
                 }
 
-                // Eliminar el registro en la base de datos
                 try (MongoClient mongoClient = MongoClients.create("mongodb+srv://alissonviteri01:123456poo24a@cluster0.f0q39vt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")) {
                     MongoDatabase db = mongoClient.getDatabase("MinimarketPro");
                     MongoCollection<Document> collection = db.getCollection("Productos");
@@ -812,9 +810,9 @@ public class Form_administrador extends Frame {
                     collection.deleteOne(filtro);
                     lb_mensaje_productos.setText("Producto eliminado correctamente");
 
-                    // Actualizar la tabla
+
                     DefaultTableModel model1 = (DefaultTableModel) table_productos.getModel();
-                    model1.setRowCount(0); // Limpiar la tabla antes de llenarla
+                    model1.setRowCount(0);
 
                     List<Document> documents = collection.find().into(new ArrayList<>());
                     for (Document doc : documents) {
@@ -839,10 +837,10 @@ public class Form_administrador extends Frame {
         buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obtener el código del producto a buscar
+
                 String codigoBuscado = tf_codigo_buscar.getText().trim();
 
-                // Validar que el código no esté vacío
+
                 if (codigoBuscado.isEmpty()) {
                     lb_mensaje_productos.setText("Por favor, ingrese un código de producto para buscar.");
                     return;
@@ -852,7 +850,7 @@ public class Form_administrador extends Frame {
                     MongoDatabase db = mongoClient.getDatabase("MinimarketPro");
                     MongoCollection<Document> collection = db.getCollection("Productos");
 
-                    // Buscar el producto por el código
+
                     Document query = new Document("codigo", codigoBuscado);
                     Document resultado = collection.find(query).first();
 
@@ -877,11 +875,14 @@ public class Form_administrador extends Frame {
                         productosModel.addRow(row); // Agregar la fila a la tabla
 
                         lb_mensaje_productos.setText("Producto encontrado.");
+                        tf_codigo_buscar.setText("");
                     } else {
                         lb_mensaje_productos.setText("Producto no encontrado.");
+                        tf_codigo_buscar.setText("");
                     }
                 } catch (MongoException exception) {
                     lb_mensaje_productos.setText("Error al buscar producto.");
+                    tf_codigo_buscar.setText("");
                 }
             }
         });
@@ -897,25 +898,22 @@ public class Form_administrador extends Frame {
                 // Obtener la categoría seleccionada
                 String categoriaSeleccionada = (String) combo_categoria.getSelectedItem();
 
-                // Conexión a MongoDB
                 try (MongoClient mongoClient = MongoClients.create("mongodb+srv://alissonviteri01:123456poo24a@cluster0.f0q39vt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")) {
                     MongoDatabase db = mongoClient.getDatabase("MinimarketPro");
                     MongoCollection<Document> collection = db.getCollection("Productos");
 
-                    // Crear la consulta dependiendo de la categoría seleccionada
                     Document query;
                     if ("Todas".equals(categoriaSeleccionada)) {
-                        query = new Document(); // Consulta vacía para obtener todos los productos
+                        query = new Document();
                     } else {
                         query = new Document("categoria", categoriaSeleccionada);
                     }
 
-                    // Buscar productos que coincidan con la categoría seleccionada
                     List<Document> resultados = collection.find(query).into(new ArrayList<>());
 
-                    // Actualizar la tabla con los resultados de la búsqueda
+
                     DefaultTableModel productosModel = (DefaultTableModel) table_productos.getModel();
-                    productosModel.setRowCount(0); // Limpiar la tabla antes de agregar los nuevos datos
+                    productosModel.setRowCount(0);
 
                     for (Document doc : resultados) {
                         Vector<Object> row = new Vector<>();
@@ -927,7 +925,7 @@ public class Form_administrador extends Frame {
 
                         // Convertir la ruta de la imagen en un ImageIcon
                         String rutaImagen = doc.getString("imagen");
-                        ImageIcon imageIcon = new ImageIcon(rutaImagen); // Asume que la ruta es correcta
+                        ImageIcon imageIcon = new ImageIcon(rutaImagen);
                         Image img = imageIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
                         row.add(new ImageIcon(img)); // Usar el ImageIcon directamente en la fila
 
@@ -943,7 +941,6 @@ public class Form_administrador extends Frame {
         });
 
 
-
         //VENTAS
 
         verVentasButton.addActionListener(new ActionListener() {
@@ -954,8 +951,35 @@ public class Form_administrador extends Frame {
         });
 
 
+        bt_salir.addActionListener(new ActionListener() {
+            /**
+             * Evento de acción para el botón de salir.
+             * Este método cierra toda la aplicación al hacer clic en el botón.
+             *
+             * @param e El evento de acción que ha ocurrido al hacer clic en el botón de salir.
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Cierra toda la aplicación
+                System.exit(0);
+            }
+        });
 
+// ActionListener para el botón de cerrar sesión
+        bt_cerrar_sesion.addActionListener(new ActionListener() {
+            /**
+             * Evento de acción para el botón de cerrar sesión.
+             * Este método cierra la ventana actual y abre el formulario de inicio de sesión.
+             *
+             * @param e El evento de acción que ha ocurrido al hacer clic en el botón de cerrar sesión.
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(bt_cerrar_sesion);
+                frame.dispose();
+                Form_login formLogin = new Form_login();
+                formLogin.setVisible(true);
+            }
+        });
     }
-
-
 }
