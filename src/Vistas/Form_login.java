@@ -163,13 +163,13 @@ public class Form_login extends JFrame {
                             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             frame.setContentPane(new Form_administrador().panel_principal);
                             frame.pack();
-                            frame.setSize(900, 600);
+                            frame.setSize(1400, 700);
                             frame.setLocationRelativeTo(null);
                             frame.setVisible(true);
                         } else if ("cajero".equals(rol)) {
                             JFrame cajeroFrame = new JFrame("Cajero");
                             cajeroFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            cajeroFrame.setContentPane(new Form_cajero().panel);
+                            cajeroFrame.setContentPane(new Form_cajero().panel_cajero);
                             cajeroFrame.pack();
                             cajeroFrame.setSize(900, 600);
                             cajeroFrame.setLocationRelativeTo(null);
@@ -186,7 +186,4 @@ public class Form_login extends JFrame {
         });
     }
 
-    public static class Form_cajero {
-        public JPanel panel;
-    }
 }
