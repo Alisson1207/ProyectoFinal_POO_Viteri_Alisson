@@ -8,5 +8,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mongodb.driver.sync" level="project" />
+    <orderEntry type="library" name="itextpdf-5.5.9" level="project" />
   </component>
+  <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itextpdf</artifactId>
+      <version>5.5.9</version>
+  </dependency>
 </module>
