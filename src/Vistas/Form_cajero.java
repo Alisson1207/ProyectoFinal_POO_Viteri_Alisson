@@ -182,14 +182,12 @@ public class Form_cajero {
 
         bt_eliminar_producto.addActionListener(e -> eliminarProductoCarrito());
 
-        bt_editar_producto.addActionListener(e -> editarProductoCarrito()); // Añadido evento para editar
+        bt_editar_producto.addActionListener(e -> editarProductoCarrito());
 
         bt_generar_factura.addActionListener(e -> {
-            // Suponiendo que tienes una forma de obtener el nombre del cajero
-            String nombreCajero = "nombre"; // Reemplaza esto con el método para obtener el nombre del cajero actual
+            String nombreCajero = "nombre";
 
             try {
-                // Llama al método generarFactura con el nombre del cajero
                 generarFactura(nombreCajero);
 
                 // Mensaje de éxito (opcional)
