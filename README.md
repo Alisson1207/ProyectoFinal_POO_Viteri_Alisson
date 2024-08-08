@@ -152,7 +152,7 @@ Tambien permite visualizar todas las ventas realizadas.
 ![img_28.png](img_28.png)
 
 
-Link del video: 
+Link del video: https://youtu.be/dZeQZVfAh1c 
 
 
 
