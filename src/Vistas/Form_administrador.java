@@ -96,6 +96,7 @@ public class Form_administrador extends Frame {
     private JButton bt_subir_imagen;
     private JPanel panel_mostrar_imagen;
     private JLabel lb_imagen;
+    private JScrollPane encabezado;
     private File imagenSeleccionada;
 
     /**
@@ -950,6 +951,139 @@ public class Form_administrador extends Frame {
             }
         });
 
+        bt_buscar_venta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener la cédula ingresada en el campo de texto
+                String cedula = tf_cedula_venta.getText().trim();
+
+                if (cedula.isEmpty()) {
+                    JOptionPane.showMessageDialog(panel_mostrar_venta, "Por favor ingrese una cédula.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                // Conectar a la base de datos y buscar las ventas por número de cédula
+                try (var mongoClient = MongoClients.create("mongodb+srv://alissonviteri01:123456poo24a@cluster0.f0q39vt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")) {
+                    MongoDatabase database = mongoClient.getDatabase("MinimarketPro");
+                    MongoCollection<Document> ventasCollection = database.getCollection("Ventas");
+
+                    // Buscar las ventas por cédula
+                    List<Document> ventas = ventasCollection.find(new Document("cedula", cedula)).into(new ArrayList<>());
+
+                    if (ventas.isEmpty()) {
+                        JOptionPane.showMessageDialog(panel_mostrar_venta, "No se encontraron ventas para la cédula proporcionada.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+
+                    // Crear un modelo de tabla con encabezados
+                    DefaultTableModel model = new DefaultTableModel(
+                            new Object[]{"Número Venta", "Nombre del Vendedor", "Cédula", "Fecha de Venta"}, 0);
+
+                    for (Document venta : ventas) {
+                        String numeroVenta = venta.getString("numero_factura");
+                        String nombreVendedor = venta.getString("nombre");
+                        String fechaVenta = venta.getDate("fecha_venta").toString();
+                        String cedulaCliente = venta.getString("cedula");
+
+                        model.addRow(new Object[]{numeroVenta, nombreVendedor, cedulaCliente, fechaVenta});
+                    }
+
+                    // Asignar el modelo a la tabla
+                    table_ventas.setModel(model);
+
+                    // Mejorar el diseño de la tabla
+                    table_ventas.setFillsViewportHeight(true);
+                    table_ventas.getTableHeader().setReorderingAllowed(false);
+                    table_ventas.getTableHeader().setResizingAllowed(false);
+                    table_ventas.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 14));
+                    table_ventas.getTableHeader().setForeground(Color.BLACK);
+                    table_ventas.getTableHeader().setBackground(new Color(220, 220, 220));
+                    table_ventas.setFont(new Font("SansSerif", Font.PLAIN, 12));
+                    table_ventas.setRowHeight(25);
+                    table_ventas.setSelectionBackground(new Color(184, 207, 229));
+                    table_ventas.setSelectionForeground(Color.BLACK);
+                    table_ventas.setGridColor(Color.LIGHT_GRAY);
+
+                    // Configurar el ancho de las columnas para una mejor visibilidad
+                    table_ventas.getColumnModel().getColumn(0).setPreferredWidth(120);
+                    table_ventas.getColumnModel().getColumn(1).setPreferredWidth(200);
+                    table_ventas.getColumnModel().getColumn(2).setPreferredWidth(100);
+                    table_ventas.getColumnModel().getColumn(3).setPreferredWidth(150);
+
+                    // Agregar la tabla al JScrollPane
+                    encabezado.setViewportView(table_ventas);
+
+                    // Redibujar el panel para asegurar que los cambios sean visibles
+                    panel_mostrar_venta.revalidate();
+                    panel_mostrar_venta.repaint();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(panel_mostrar_venta, "Error al buscar las ventas: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        verVentasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Conectar a la base de datos y obtener todas las ventas
+                try (var mongoClient = MongoClients.create("mongodb+srv://alissonviteri01:123456poo24a@cluster0.f0q39vt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")) {
+                    MongoDatabase database = mongoClient.getDatabase("MinimarketPro");
+                    MongoCollection<Document> ventasCollection = database.getCollection("Ventas");
+
+                    // Obtener todas las ventas
+                    List<Document> ventas = ventasCollection.find().into(new ArrayList<>());
+
+                    // Crear un modelo de tabla con encabezados
+                    DefaultTableModel model = new DefaultTableModel(
+                            new Object[]{"Número Venta", "Nombre del Vendedor", "Cédula", "Fecha de Venta"}, 0);
+
+                    for (Document venta : ventas) {
+                        String numeroVenta = venta.getString("numero_factura");
+                        String nombreVendedor = venta.getString("nombre");
+                        String fechaVenta = venta.getDate("fecha_venta").toString();
+                        String cedulaCliente = venta.getString("cedula");
+
+                        model.addRow(new Object[]{numeroVenta, nombreVendedor, cedulaCliente, fechaVenta});
+                    }
+
+                    // Asignar el modelo a la tabla
+                    table_ventas.setModel(model);
+
+                    // Mejorar el diseño de la tabla
+                    table_ventas.setFillsViewportHeight(true);
+                    table_ventas.getTableHeader().setReorderingAllowed(false);
+                    table_ventas.getTableHeader().setResizingAllowed(false);
+                    table_ventas.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 14));
+                    table_ventas.getTableHeader().setForeground(Color.BLACK);
+                    table_ventas.getTableHeader().setBackground(new Color(220, 220, 220));
+                    table_ventas.setFont(new Font("Arial", Font.PLAIN, 12));
+                    table_ventas.setRowHeight(25);
+                    table_ventas.setSelectionBackground(new Color(184, 207, 229));
+                    table_ventas.setSelectionForeground(Color.BLACK);
+                    table_ventas.setGridColor(Color.LIGHT_GRAY);
+
+                    // Configurar el ancho de las columnas para una mejor visibilidad
+                    table_ventas.getColumnModel().getColumn(0).setPreferredWidth(120);
+                    table_ventas.getColumnModel().getColumn(1).setPreferredWidth(200);
+                    table_ventas.getColumnModel().getColumn(2).setPreferredWidth(100);
+                    table_ventas.getColumnModel().getColumn(3).setPreferredWidth(150);
+
+                    // Agregar la tabla al JScrollPane
+                    encabezado.setViewportView(table_ventas);
+
+                    // Redibujar el panel para asegurar que los cambios sean visibles
+                    panel_mostrar_venta.revalidate();
+                    panel_mostrar_venta.repaint();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(panel_mostrar_venta, "Error al obtener las ventas: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
 
         bt_salir.addActionListener(new ActionListener() {
             /**
@@ -981,5 +1115,7 @@ public class Form_administrador extends Frame {
                 formLogin.setVisible(true);
             }
         });
+
+
     }
 }

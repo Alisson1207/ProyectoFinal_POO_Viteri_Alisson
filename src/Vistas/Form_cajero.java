@@ -471,10 +471,14 @@ public class Form_cajero {
                         productosList.add(productoDoc);
                     }
 
+                    // Obtener la cédula del cajero (ejemplo de campo cedulaCajero)
+                    String cedulaCajero = cedulasCajero.get(0);
+
                     // Guardar la venta en la colección de ventas
                     Document ventaDoc = new Document("numero_factura", generarNumeroFactura())
                             .append("nombre", nombreCajero)
                             .append("fecha_venta", new Date())
+                            .append("cedula", cedulaCajero) // Añadir la cédula
                             .append("productos", productosList);
 
                     // Verificar y guardar en la colección
