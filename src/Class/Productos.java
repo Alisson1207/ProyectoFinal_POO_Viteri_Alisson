@@ -2,7 +2,7 @@ package Class;
 
 import java.io.File;
 
-public class Productos extends Personal{
+public class Productos{
     private String codigo;
     private String nombre_producto;
     private int stock;
