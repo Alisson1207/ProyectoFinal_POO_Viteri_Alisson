@@ -944,13 +944,6 @@ public class Form_administrador extends Frame {
 
         //VENTAS
 
-        verVentasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
         bt_buscar_venta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -990,8 +983,6 @@ public class Form_administrador extends Frame {
 
                     // Asignar el modelo a la tabla
                     table_ventas.setModel(model);
-
-                    // Mejorar el diseño de la tabla
                     table_ventas.setFillsViewportHeight(true);
                     table_ventas.getTableHeader().setReorderingAllowed(false);
                     table_ventas.getTableHeader().setResizingAllowed(false);
@@ -1004,16 +995,16 @@ public class Form_administrador extends Frame {
                     table_ventas.setSelectionForeground(Color.BLACK);
                     table_ventas.setGridColor(Color.LIGHT_GRAY);
 
-                    // Configurar el ancho de las columnas para una mejor visibilidad
+
                     table_ventas.getColumnModel().getColumn(0).setPreferredWidth(120);
                     table_ventas.getColumnModel().getColumn(1).setPreferredWidth(200);
                     table_ventas.getColumnModel().getColumn(2).setPreferredWidth(100);
                     table_ventas.getColumnModel().getColumn(3).setPreferredWidth(150);
 
-                    // Agregar la tabla al JScrollPane
+
                     encabezado.setViewportView(table_ventas);
 
-                    // Redibujar el panel para asegurar que los cambios sean visibles
+
                     panel_mostrar_venta.revalidate();
                     panel_mostrar_venta.repaint();
 
@@ -1048,10 +1039,8 @@ public class Form_administrador extends Frame {
                         model.addRow(new Object[]{numeroVenta, nombreVendedor, cedulaCliente, fechaVenta});
                     }
 
-                    // Asignar el modelo a la tabla
-                    table_ventas.setModel(model);
 
-                    // Mejorar el diseño de la tabla
+                    table_ventas.setModel(model);
                     table_ventas.setFillsViewportHeight(true);
                     table_ventas.getTableHeader().setReorderingAllowed(false);
                     table_ventas.getTableHeader().setResizingAllowed(false);
@@ -1069,11 +1058,8 @@ public class Form_administrador extends Frame {
                     table_ventas.getColumnModel().getColumn(1).setPreferredWidth(200);
                     table_ventas.getColumnModel().getColumn(2).setPreferredWidth(100);
                     table_ventas.getColumnModel().getColumn(3).setPreferredWidth(150);
-
-                    // Agregar la tabla al JScrollPane
                     encabezado.setViewportView(table_ventas);
 
-                    // Redibujar el panel para asegurar que los cambios sean visibles
                     panel_mostrar_venta.revalidate();
                     panel_mostrar_venta.repaint();
 
