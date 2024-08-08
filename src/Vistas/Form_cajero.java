@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -73,17 +75,30 @@ public class Form_cajero {
         panel_cajero = new JPanel(new BorderLayout());
         menu_cajero = new JTabbedPane();
 
-        // Configuración del panel de catálogo y botones de categorías
+        // Definir colores y fuentes personalizados
+        Color fondoPanel = new Color(230, 240, 250);
+        Color colorBotonBebidas = new Color(23, 136, 234);
+        Color colorBotonVegetales = new Color(74, 225, 74);
+        Color colorBotonSnacks = new Color(255, 165, 0);
+        Color colorBotonPanaderia = new Color(0, 34, 128);
+        Color colorBotonCarnes = new Color(244, 87, 87);
+        Color colorBotonLacteos = new Color(201, 176, 222);
+        Color colorTextoBoton = Color.WHITE;
+        Font fuenteBoton = new Font("Arial", Font.BOLD, 15);
+        Border bordeBoton = new LineBorder(Color.WHITE, 3);
+
+
         panel_catalogo = new JPanel(new BorderLayout());
         panel_catalogo.setLayout(new GridLayout(3, 2, 10, 10));
+        panel_catalogo.setBackground(fondoPanel);
 
-        bt_bebidas = new JButton("Bebidas");
-        bt_vegetales = new JButton("Vegetales");
-        bt_snacks = new JButton("Snacks");
-        bt_panaderia = new JButton("Panadería");
-        bt_carnes = new JButton("Carnes");
-        bt_lacteos = new JButton("Lácteos");
-
+        // Crear y estilizar los botones de categoría
+        bt_bebidas = crearBotonEstilizado("Bebidas", colorBotonBebidas, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_vegetales = crearBotonEstilizado("Vegetales", colorBotonVegetales, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_snacks = crearBotonEstilizado("Snacks", colorBotonSnacks, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_panaderia = crearBotonEstilizado("Panadería", colorBotonPanaderia, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_carnes = crearBotonEstilizado("Carnes", colorBotonCarnes, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_lacteos = crearBotonEstilizado("Lácteos", colorBotonLacteos, colorTextoBoton, fuenteBoton, bordeBoton);
 
         panel_catalogo.add(bt_bebidas);
         panel_catalogo.add(bt_vegetales);
@@ -92,27 +107,30 @@ public class Form_cajero {
         panel_catalogo.add(bt_carnes);
         panel_catalogo.add(bt_lacteos);
 
-
         // Panel de bebidas
         panel_bebidas = new JPanel(new BorderLayout());
+        panel_bebidas.setBackground(fondoPanel);
         lb_titulo_bebidas = new JLabel("Catálogo de Bebidas", SwingConstants.CENTER);
         panel_bebidas.add(lb_titulo_bebidas, BorderLayout.NORTH);
 
         // Panel para el carrito de compras
         panel_carrito = new JPanel(new BorderLayout());
+        panel_carrito.setBackground(fondoPanel);
         modeloTablaCarrito = new DefaultTableModel(new Object[]{"Nombre del Producto", "Cantidad", "Precio Total"}, 0);
         tabla_carrito = new JTable(modeloTablaCarrito);
         panel_carrito.add(new JScrollPane(tabla_carrito), BorderLayout.CENTER);
 
-        bt_ver_carrito = new JButton("Ver Carrito");
-        bt_generar_factura = new JButton("Generar Factura");
-        bt_eliminar_producto = new JButton("Eliminar Producto");
-        bt_editar_producto = new JButton("Editar Producto"); // Añadido botón de editar
-        bt_regresar_carrito = new JButton("Regresar");
-        bt_finalizar_compra = new JButton("Finalizar Compra");
+        // Crear y estilizar botones del carrito
+        bt_ver_carrito = crearBotonEstilizado("Ver Carrito", colorBotonBebidas, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_generar_factura = crearBotonEstilizado("Generar Factura", colorBotonBebidas, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_eliminar_producto = crearBotonEstilizado("Eliminar Producto", colorBotonCarnes, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_editar_producto = crearBotonEstilizado("Editar Producto", colorBotonVegetales, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_regresar_carrito = crearBotonEstilizado("Regresar", colorBotonPanaderia, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_finalizar_compra = crearBotonEstilizado("Finalizar Compra", colorBotonBebidas, colorTextoBoton, fuenteBoton, bordeBoton);
 
         JPanel botoneraCarrito = new JPanel();
-        botoneraCarrito.add(bt_editar_producto); // Añadido botón de editar
+        botoneraCarrito.setBackground(fondoPanel);
+        botoneraCarrito.add(bt_editar_producto);
         botoneraCarrito.add(bt_eliminar_producto);
         botoneraCarrito.add(bt_generar_factura);
         botoneraCarrito.add(bt_regresar_carrito);
@@ -122,17 +140,19 @@ public class Form_cajero {
 
         // Panel de cerrar sesión
         panel_cerrar_sesion = new JPanel(new BorderLayout());
-        bt_salir = new JButton("Salir");
-        bt_cerrar_sesion = new JButton("Cerrar Sesión");
+        panel_cerrar_sesion.setBackground(fondoPanel);
+        bt_salir = crearBotonEstilizado("Salir", colorBotonBebidas, colorTextoBoton, fuenteBoton, bordeBoton);
+        bt_cerrar_sesion = crearBotonEstilizado("Cerrar Sesión", colorBotonCarnes, colorTextoBoton, fuenteBoton, bordeBoton);
 
         JPanel botoneraCerrarSesion = new JPanel();
+        botoneraCerrarSesion.setBackground(fondoPanel);
         botoneraCerrarSesion.add(bt_cerrar_sesion);
         botoneraCerrarSesion.add(bt_salir);
 
         panel_cerrar_sesion.add(new JLabel("Cerrar Sesión", SwingConstants.CENTER), BorderLayout.NORTH);
         panel_cerrar_sesion.add(botoneraCerrarSesion, BorderLayout.CENTER);
 
-
+        // Añadir pestañas al menú
         menu_cajero.addTab("Catálogo", panel_catalogo);
         menu_cajero.addTab("Productos", panel_bebidas);
         menu_cajero.addTab("Carrito", panel_carrito);
@@ -140,7 +160,7 @@ public class Form_cajero {
 
         panel_cajero.add(menu_cajero, BorderLayout.CENTER);
 
-
+        // Añadir acciones a los botones de categoría
         bt_bebidas.addActionListener(e -> {
             configurarPanelCatalogo("Bebidas");
             menu_cajero.setSelectedIndex(1);
@@ -171,7 +191,6 @@ public class Form_cajero {
             menu_cajero.setSelectedIndex(1);
         });
 
-
         bt_ver_carrito.addActionListener(e -> {
             actualizarTablaCarrito();
             menu_cajero.setSelectedIndex(2);
@@ -189,8 +208,6 @@ public class Form_cajero {
 
             try {
                 generarFactura(nombreCajero);
-
-                // Mensaje de éxito (opcional)
                 JOptionPane.showMessageDialog(panel_cajero, "Factura generada exitosamente.");
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -200,7 +217,6 @@ public class Form_cajero {
                 JOptionPane.showMessageDialog(panel_cajero, "Error al crear el documento PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
-
 
         bt_salir.addActionListener(e -> System.exit(0));
 
@@ -213,7 +229,18 @@ public class Form_cajero {
         });
     }
 
-        /**
+    // Método para crear botones estilizados
+    private JButton crearBotonEstilizado(String texto, Color colorFondo, Color colorTexto, Font fuente, Border borde) {
+        JButton boton = new JButton(texto);
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFont(fuente);
+        boton.setBorder(borde);
+        return boton;
+    }
+
+
+    /**
          * Configura el panel de catálogo con productos de una categoría específica.
          *
          * @param categoria La categoría de productos a mostrar.

@@ -178,8 +178,8 @@ public class Form_login extends JFrame {
                         dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-                        tf_usuario.setText(" ");
-                        pf_contrasena.setText(" ");
+                        tf_usuario.setText("");
+                        pf_contrasena.setText("");
                     }
                 } catch (Exception e1) {
                     System.out.println("Error al conectar a MongoDB Atlas: " + e1.getMessage());
