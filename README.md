@@ -52,7 +52,7 @@ Hereda de la clase Personal, permitiendo vincular cada venta con el usuario que 
 * Login: Interfaz para el inicio de sesión de usuarios.
 * Cajero: Vista para la gestión de ventas y visualización del catálogo de productos.
 * Administrador: Vista para la gestión de productos, usuarios y ventas.
-
+A
 
 
 
